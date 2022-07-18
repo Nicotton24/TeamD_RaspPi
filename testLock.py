@@ -27,20 +27,14 @@ def servo_angle(angle):
 #while文で無限ループ
 #サーボモータの角度をデューティ比で制御
 #Servo.ChangeDutyCycle(デューティ比[0-100%])
-count = 1
-while count <= 1:
+
+while True:
     try:
         print ("debugmota")
         servo_angle(0)
-        #servo_angle(-90)               #サーボモータ -90°
-        #servo_angle(-60)               #サーボモータ -60°
-        #servo_angle(-30)               #サーボモータ -30°
-        #servo_angle(0)                 #サーボモータ  0°
-        #servo_angle(30)                #サーボモータ  30°
-        #servo_angle(60)                #サーボモータ  60°
         servo_angle(90)                #サーボモータ  90°
-        #servo_angle(180)
-        count = 2
+        False
+        print("debugFalse")
     except KeyboardInterrupt:          #Ctrl+Cキーが押された
         Servo.stop()                   #サーボモータをストップ
         GPIO.cleanup()                 #GPIOをクリーンアップ
