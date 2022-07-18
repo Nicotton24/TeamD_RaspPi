@@ -1,0 +1,49 @@
+#必要なモジュールをインポート
+from asyncio.log import logger
+import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
+import time                         #時間制御用のモジュールをインポート
+import sys                          #sysモジュールをインポート
+
+#ポート番号の定義
+Servo_pin = 18   
+print ("debug")         #変数"Servo_pin"に18を格納
+
+#GPIOの設定
+GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
+GPIO.setup(Servo_pin, GPIO.OUT)     #GPIO18を出力モードに設定
+
+#PWMの設定
+#サーボモータSG90の周波数は50[Hz]
+Servo = GPIO.PWM(Servo_pin, 50)     #GPIO.PWM(ポート番号, 周波数[Hz])
+
+Servo.start(0)                      #Servo.start(デューティ比[0-100%])
+
+#角度からデューティ比を求める関数
+def servo_angle(angle):
+    duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180   #角度からデューティ比を求める
+    Servo.ChangeDutyCycle(duty)     #デューティ比を変更
+    time.sleep(0.3)                 #0.3秒間待つ
+
+#while文で無限ループ
+#サーボモータの角度をデューティ比で制御
+#Servo.ChangeDutyCycle(デューティ比[0-100%])
+count = 1
+print ("degugkkkk")
+
+while count <= 1:
+    try:
+        print ("degugkkkk")
+        servo_angle(0)
+        #servo_angle(-90)               #サーボモータ -90°
+        #servo_angle(-60)               #サーボモータ -60°
+        #servo_angle(-30)               #サーボモータ -30°
+        #servo_angle(0)                 #サーボモータ  0°
+        #servo_angle(30)                #サーボモータ  30°
+        #servo_angle(60)                #サーボモータ  60°
+        servo_angle(90)                #サーボモータ  90°
+        #servo_angle(180)
+        count = 2
+    except KeyboardInterrupt:          #Ctrl+Cキーが押された
+        Servo.stop()                   #サーボモータをストップ
+        GPIO.cleanup()                 #GPIOをクリーンアップ
+        sys.exit()                     #プログラムを終了
