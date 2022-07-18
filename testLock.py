@@ -28,11 +28,9 @@ def servo_angle(angle):
 #サーボモータの角度をデューティ比で制御
 #Servo.ChangeDutyCycle(デューティ比[0-100%])
 count = 1
-print ("degugkkkk")
-
 while count <= 1:
     try:
-        print ("degugkkkk")
+        print ("debugmota")
         servo_angle(0)
         #servo_angle(-90)               #サーボモータ -90°
         #servo_angle(-60)               #サーボモータ -60°
