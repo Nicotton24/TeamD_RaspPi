@@ -5,7 +5,7 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 
 #ポート番号の定義
-Servo_pin = 18   
+Servo_pin = 18
 print ("debug")         #変数"Servo_pin"に18を格納
 
 #GPIOの設定
