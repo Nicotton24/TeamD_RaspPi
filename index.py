@@ -5,12 +5,10 @@ import time
 Angle = int(sys.argv[1],10) #* 引数[1]で受け取った角度をint(10進数)に変換して格納
 Servo_pin = 18      #* GPIO_18番を指定
 
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(Servo_pin, GPIO.OUT)
 
 Servo = GPIO.PWM(Servo_pin, 50)
-
 Servo.start(0)
 
 
@@ -27,8 +25,7 @@ def servo_angle(angle):
 { angle: -90 , duty: 2.5 }
 '''
 
-servo_angle(0)
 servo_angle(Angle)
 Servo.stop()
-GPIO.cleanup()
+GPIO.cleanup(Servo_pin)
 sys.exit()
