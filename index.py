@@ -17,7 +17,7 @@ def servo_angle(angle):
     duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
     Servo.ChangeDutyCycle(duty)
     print("{ angle: " + str(angle) + " , duty: " + str(duty) + " }")
-    time.sleep(0.3)
+    time.sleep(0.1)
 
 '''
 { angle: 90 , duty: 12.0 }
